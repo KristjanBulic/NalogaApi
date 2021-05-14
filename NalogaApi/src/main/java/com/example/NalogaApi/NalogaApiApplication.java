@@ -13,7 +13,8 @@ import java.util.concurrent.Executors;
 @SpringBootApplication
 @RestController
 public class NalogaApiApplication {
-
+	
+	private ExecutorService executorService = Executors.newFixedThreadPool(4);
 
 	public static void main(String[] args) {
 		SpringApplication.run(NalogaApiApplication.class, args);
@@ -42,7 +43,6 @@ public class NalogaApiApplication {
 				Scrapper.getContent(url, classToGet, text, counter);
 			}
 		}else {
-			ExecutorService executorService = Executors.newFixedThreadPool(paralelCalls);
 			for (int i = 0; i < paralelCalls; i++){
 				executorService.submit(new Scrapper(urls[i], classToGet, text, counter));
 			}
@@ -55,7 +55,6 @@ public class NalogaApiApplication {
 					break;
 				}
 			}
-			executorService.shutdown();
 		}
 
 		return (text.toString() + "\n" + counter.toString());
