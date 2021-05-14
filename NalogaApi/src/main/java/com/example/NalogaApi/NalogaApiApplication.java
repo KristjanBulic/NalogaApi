@@ -38,18 +38,13 @@ public class NalogaApiApplication {
 			return "Only values between 1 and 4";
 		}
 
-		if (paralelCalls == 1) {
-			for (String url : urls) {
-				Scrapper.getContent(url, classToGet, text, counter);
-			}
-		}else {
-			for (int i = 0; i < paralelCalls; i++){
+		for(int i = 0; i < 4; i++){
+			if(i < paralelCalls - 1){
 				executorService.submit(new Scrapper(urls[i], classToGet, text, counter));
+			}else {
+				Scrapper.getContent(urls[i], classToGet, text, counter);
 			}
-
-			for (int j = 4; j > paralelCalls; j--){
-				Scrapper.getContent(urls[j-1], classToGet, text, counter);
-			}
+		}
 			while (true){ //waits for all threads to end
 				if (text.size() == 4){
 					break;
