@@ -1,4 +1,0 @@
-FROM openjdk:11
-COPY . /myapp
-WORKDIR /myapp
-CMD ["java", "-jar", "/target/NalogaApi-0.0.1-SNAPSHOT.jar"]
