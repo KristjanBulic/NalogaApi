@@ -39,7 +39,7 @@ public class NalogaApiApplication {
 		}
 
 		for(int i = 0; i < 4; i++){
-			if(i < paralelCalls - 1){
+			if(i < paralelCalls){
 				executorService.submit(new Scrapper(urls[i], classToGet, text, counter));
 			}else {
 				Scrapper.getContent(urls[i], classToGet, text, counter);
