@@ -20,7 +20,7 @@ public class NalogaApiApplication {
 		SpringApplication.run(NalogaApiApplication.class, args);
 	}
 
-	@RequestMapping(path = "/{numberOfParalelCalls}")
+	@GetMapping(path = "/{numberOfParalelCalls}")
 	public static String callService(@PathVariable("numberOfParalelCalls") String numberOfParalelCalls) {
 
 		int paralelCalls = Integer.parseInt(numberOfParalelCalls);
